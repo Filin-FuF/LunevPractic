@@ -22,16 +22,6 @@ namespace LunevPractic.Models
         {
             optionsBuilder.UseSqlServer("Server=svin;Database=EquipmentAccounting;Trusted_Connection=true;");
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<EquipmentType>().HasData(
-            new EquipmentType { Id = 1, Name = "Компьютер" },
-            new EquipmentType { Id = 2, Name = "Принтер" },
-            new
-   
-);
-        }
+        
     }
 }
