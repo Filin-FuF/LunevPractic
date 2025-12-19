@@ -1,0 +1,82 @@
+﻿
+
+
+CREATE TABLE Departments (
+    Id   INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Employees (
+    Id           INT IDENTITY(1,1) PRIMARY KEY,
+    Name         NVARCHAR(100) NOT NULL,
+    DepartmentId INT NOT NULL,
+    CONSTRAINT FK_Employees_Departments
+        FOREIGN KEY (DepartmentId) REFERENCES Departments(Id)
+);
+
+CREATE TABLE EquipmentTypes (
+    Id   INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Equipments (
+    Id              INT IDENTITY(1,1) PRIMARY KEY,
+    InventoryNumber NVARCHAR(50) NOT NULL UNIQUE,
+    Name            NVARCHAR(100) NOT NULL,
+    EquipmentTypeId INT NOT NULL,
+    DepartmentId    INT NOT NULL,
+    EmployeeId      INT NULL,
+
+    CONSTRAINT FK_Equipments_EquipmentTypes
+        FOREIGN KEY (EquipmentTypeId) REFERENCES EquipmentTypes(Id),
+
+    CONSTRAINT FK_Equipments_Departments
+        FOREIGN KEY (DepartmentId) REFERENCES Departments(Id),
+
+    CONSTRAINT FK_Equipments_Employees
+        FOREIGN KEY (EmployeeId) REFERENCES Employees(Id)
+);
+
+
+
+
+
+
+
+INSERT INTO Departments (Name) VALUES
+(N'IT'),
+(N'Бухгалтерия'),
+(N'HR'),
+(N'Маркетинг'),
+(N'Склад');
+
+INSERT INTO EquipmentTypes (Name) VALUES
+(N'Компьютер'),
+(N'Ноутбук'),
+(N'Монитор'),
+(N'Принтер'),
+(N'Сканер');
+
+
+
+
+INSERT INTO Employees (Name, DepartmentId) VALUES
+(N'Иванов Иван', 1),
+(N'Петров Пётр', 1),
+(N'Сидорова Анна', 2),
+(N'Кузнецов Олег', 3),
+(N'Смирнова Елена', 4);
+
+
+
+
+
+
+INSERT INTO Equipments
+    (InventoryNumber, Name, EquipmentTypeId, DepartmentId, EmployeeId)
+VALUES
+(N'PC-0001', N'Системный блок №1', 1, 1, 1),
+(N'PC-0002', N'Системный блок №2', 1, 1, 2),
+(N'NB-0001', N'Ноутбук менеджера', 2, 4, 5),
+(N'MN-0001', N'Монитор 24\"', 3, 1, 1),
+(N'PR-0001', N'Принтер лазерный', 4, 2, NULL);

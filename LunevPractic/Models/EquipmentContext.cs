@@ -10,9 +10,7 @@ namespace LunevPractic.Models
     public class EquipmentContext : DbContext
     {
 
-        public EquipmentContext() 
-        {
-        }
+        
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EquipmentType> EquipmentTypes { get; set; }
@@ -20,8 +18,12 @@ namespace LunevPractic.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=svin;Database=EquipmentAccounting;Trusted_Connection=true;");
+            if (!optionsBuilder.IsConfigured)
+                optionsBuilder.UseSqlServer(
+                    "Data Source=.\\SQLEXPRESS01;Initial Catalog=EquipmentAccounting;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;");
         }
-        
+
+
+
     }
 }

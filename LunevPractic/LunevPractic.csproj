@@ -21,4 +21,24 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="SQL.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SQL.txt</LastGenOutput>
+    </None>
+    <None Update="SQL.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SQL.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
 </Project>
