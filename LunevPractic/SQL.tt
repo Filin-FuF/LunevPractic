@@ -27,21 +27,33 @@ CREATE TABLE EquipmentTypes (
 
 CREATE TABLE Equipments (
     Id              INT IDENTITY(1,1) PRIMARY KEY,
-    InventoryNumber NVARCHAR(50) NOT NULL UNIQUE,
+    InventoryNumber NVARCHAR(50)  NOT NULL UNIQUE,
     Name            NVARCHAR(100) NOT NULL,
-    EquipmentTypeId INT NOT NULL,
-    DepartmentId    INT NOT NULL,
-    EmployeeId      INT NULL,
-
+    EquipmentTypeId INT           NOT NULL,
+    SerialNumber    NVARCHAR(100) NOT NULL,
+    EmployeeId      INT           NULL,
+    RegistrationDate DATE         NOT NULL,
+    Status          NVARCHAR(20)  NOT NULL,
     CONSTRAINT FK_Equipments_EquipmentTypes
         FOREIGN KEY (EquipmentTypeId) REFERENCES EquipmentTypes(Id),
-
-    CONSTRAINT FK_Equipments_Departments
-        FOREIGN KEY (DepartmentId) REFERENCES Departments(Id),
-
     CONSTRAINT FK_Equipments_Employees
         FOREIGN KEY (EmployeeId) REFERENCES Employees(Id)
 );
+
+CREATE TABLE EquipmentMoveHistories (
+    Id            INT IDENTITY(1,1) PRIMARY KEY,
+    EquipmentId   INT        NOT NULL,
+    MoveDate      DATETIME   NOT NULL,
+    OldEmployeeId INT        NULL,
+    NewEmployeeId INT        NULL,
+    CONSTRAINT FK_Move_Equipment
+        FOREIGN KEY (EquipmentId) REFERENCES Equipments(Id),
+    CONSTRAINT FK_Move_OldEmployee
+        FOREIGN KEY (OldEmployeeId) REFERENCES Employees(Id),
+    CONSTRAINT FK_Move_NewEmployee
+        FOREIGN KEY (NewEmployeeId) REFERENCES Employees(Id)
+);
+
 
 
 

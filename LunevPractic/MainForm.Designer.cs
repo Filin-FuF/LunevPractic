@@ -35,6 +35,7 @@
             buttonChange = new Button();
             comboBox1 = new ComboBox();
             statusStrip1 = new StatusStrip();
+            buttonHistory = new Button();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -98,15 +99,25 @@
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
             statusStrip1.Location = new Point(0, 440);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(588, 22);
+            statusStrip1.Size = new Size(585, 22);
             statusStrip1.TabIndex = 5;
             statusStrip1.Text = "statusStrip1";
+            // 
+            // buttonHistory
+            // 
+            buttonHistory.Location = new Point(251, 397);
+            buttonHistory.Name = "buttonHistory";
+            buttonHistory.Size = new Size(95, 41);
+            buttonHistory.TabIndex = 6;
+            buttonHistory.Text = "История";
+            buttonHistory.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(588, 462);
+            ClientSize = new Size(585, 462);
+            Controls.Add(buttonHistory);
             Controls.Add(statusStrip1);
             Controls.Add(comboBox1);
             Controls.Add(buttonChange);
@@ -134,5 +145,6 @@
         private ComboBox comboBox1;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
+        private Button buttonHistory;
     }
 }

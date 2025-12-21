@@ -7,24 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LunevPractic.Models;
 using System.Xml.Linq;
+using DAL;
 
 namespace LunevPractic.EditForms
 {
-    public partial class EditEmployeeForm : Form
+    public partial class EditDepartmentForm : Form
     {
-        private readonly Employee _employee;
+        private readonly Department _department;
 
-        public EditEmployeeForm(Employee employee)
+        public EditDepartmentForm(Department department)
         {
             InitializeComponent();
-            _employee = employee;
+            _department = department;
         }
 
-        private void EditEmployeeForm_Load(object sender, EventArgs e)
+        private void EditDepartmentForm_Load(object sender, EventArgs e)
         {
-            textBox1.Text = _employee.Name;
+            textBox1.Text = _department.Name;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -32,13 +32,15 @@ namespace LunevPractic.EditForms
             var name = textBox1.Text.Trim();
             if (string.IsNullOrWhiteSpace(name))
             {
-                MessageBox.Show("Введите ФИО");
+                MessageBox.Show("Введите название");
                 return;
             }
 
-            _employee.Name = name;   
+            _department.Name = name;   
             DialogResult = DialogResult.OK;
             Close();
         }
+
+        
     }
 }

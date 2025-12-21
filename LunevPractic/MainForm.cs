@@ -1,7 +1,11 @@
 using System.Data;
 using System.Windows.Forms;
-using LunevPractic.Models;
+using DAL;
+using LunevPractic.All;
+using LunevPractic.Forms;
+using LunevPractic.Forms.AddForms;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace LunevPractic
 {
@@ -20,6 +24,8 @@ namespace LunevPractic
             comboBox1.Items.Add("Подразделение");
             comboBox1.Items.Add("Оборудование");
             comboBox1.Items.Add("Тип оборудования");
+            comboBox1.Items.Add("Установленное ПО");
+            comboBox1.Items.Add("Лицензия ПО");
             comboBox1.SelectedIndex = 0;
             
             UpdateToolStatus();
@@ -90,6 +96,20 @@ namespace LunevPractic
                 case "Тип оборудования":
                     AddEmployeeForm addFormEqpT = new AddEmployeeForm();
                     if (addFormEqpT.ShowDialog() == DialogResult.OK)
+                    {
+                        RefreshListBox();
+                    }
+                    break;
+                case "Установленное ПО":
+                    AddInstalledSoftwareForm addInsSoft = new AddInstalledSoftwareForm();
+                    if (addInsSoft.ShowDialog() == DialogResult.OK)
+                    {
+                        RefreshListBox();
+                    }
+                    break;
+                case "Лицензия ПО":
+                    AddSoftwareLicenseForm addSoftwareLicense = new AddSoftwareLicenseForm();
+                    if (addSoftwareLicense.ShowDialog() == DialogResult.OK)
                     {
                         RefreshListBox();
                     }
@@ -224,10 +244,14 @@ namespace LunevPractic
                         {
                             var eq = ctx.Equipments
                                        .Include(x => x.EquipmentType)
-                                       .Include(x => x.Department)
                                        .Include(x => x.Employee)
-                                       .FirstOrDefault(x => x.Id == id.Value);
-                            if (eq == null) { MessageBox.Show("Запись не найдена"); return; }
+                                       .FirstOrDefault(x => x.Id == id.Value); 
+
+                            if (eq == null)
+                            {
+                                MessageBox.Show("Запись не найдена");
+                                return;
+                            }
 
                             using (var f = new EditForms.EditEquipmentForm(eq))
                             {
@@ -237,9 +261,9 @@ namespace LunevPractic
                                     RefreshListBox();
                                 }
                             }
-                            RefreshListBox();
                             break;
                         }
+
 
                     case "Типы оборудования":
                         {
@@ -306,6 +330,36 @@ namespace LunevPractic
             return null;
         }
 
+        private int? GetSelectedEquipmentId()
+        {
+            if (comboBox1.SelectedItem?.ToString() != "Оборудование")
+                return null;
+
+            if (listBox1.SelectedItem == null)
+                return null;
+
+            var text = listBox1.SelectedItem.ToString(); 
+            var parts = text.Split(':');
+            if (int.TryParse(parts[0], out int id))
+                return id;
+
+            return null;
+        }
+
+        private void buttonHistory_Click(object sender, EventArgs e)
+        {
+            var id = GetSelectedEquipmentId();
+            if (id == null)
+            {
+                MessageBox.Show("Выберите оборудование в списке");
+                return;
+            }
+
+            using (var f = new EquipmentHistoryForm(id.Value))
+            {
+                f.ShowDialog();
+            }
+        }
 
     }
 }

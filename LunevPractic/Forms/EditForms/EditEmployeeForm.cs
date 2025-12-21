@@ -7,24 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LunevPractic.Models;
 using System.Xml.Linq;
+using DAL;
+
 
 namespace LunevPractic.EditForms
 {
-    public partial class EditEquipmentTypeForm : Form
+    public partial class EditEmployeeForm : Form
     {
-        private readonly EquipmentType _equipmentType;
+        private readonly Employee _employee;
 
-        public EditEquipmentTypeForm(EquipmentType equipmentType)
+        public EditEmployeeForm(Employee employee)
         {
             InitializeComponent();
-            _equipmentType = equipmentType;
+            _employee = employee;
         }
 
-        private void EditEquipmentTypeForm_Load(object sender, EventArgs e)
+        private void EditEmployeeForm_Load(object sender, EventArgs e)
         {
-            textBox1.Text = _equipmentType.Name;
+            textBox1.Text = _employee.Name;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -32,19 +33,13 @@ namespace LunevPractic.EditForms
             var name = textBox1.Text.Trim();
             if (string.IsNullOrWhiteSpace(name))
             {
-                MessageBox.Show("Введите название");
+                MessageBox.Show("Введите ФИО");
                 return;
             }
 
-            _equipmentType.Name = name;   
+            _employee.Name = name;   
             DialogResult = DialogResult.OK;
             Close();
         }
-
-        private void EditEquipmentTypeForm_Load_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
-

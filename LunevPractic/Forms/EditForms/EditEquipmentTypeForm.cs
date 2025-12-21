@@ -7,24 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LunevPractic.Models;
 using System.Xml.Linq;
+using DAL;
 
 namespace LunevPractic.EditForms
 {
-    public partial class EditDepartmentForm : Form
+    public partial class EditEquipmentTypeForm : Form
     {
-        private readonly Department _department;
+        private readonly EquipmentType _equipmentType;
 
-        public EditDepartmentForm(Department department)
+        public EditEquipmentTypeForm(EquipmentType equipmentType)
         {
             InitializeComponent();
-            _department = department;
+            _equipmentType = equipmentType;
         }
 
-        private void EditDepartmentForm_Load(object sender, EventArgs e)
+        private void EditEquipmentTypeForm_Load(object sender, EventArgs e)
         {
-            textBox1.Text = _department.Name;
+            textBox1.Text = _equipmentType.Name;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -36,11 +36,15 @@ namespace LunevPractic.EditForms
                 return;
             }
 
-            _department.Name = name;   
+            _equipmentType.Name = name;   
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        
+        private void EditEquipmentTypeForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+

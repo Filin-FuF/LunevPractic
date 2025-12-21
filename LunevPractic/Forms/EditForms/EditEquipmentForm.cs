@@ -8,15 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LunevPractic.Models;
 using System.Xml.Linq;
+using DAL;
+using LunevPractic.All;
 
 namespace LunevPractic.EditForms
 {
     public partial class EditEquipmentForm : Form
     {
         private readonly EquipmentContext _context = new EquipmentContext();
-        private readonly Equipment _equipment;
+        private readonly DAL.Equipment _equipment;
 
         public EditEquipmentForm(Equipment equipment)
         {
@@ -45,8 +46,7 @@ namespace LunevPractic.EditForms
             comboBoxDep.DisplayMember = "Name";
             comboBoxDep.ValueMember = "Id";
 
-            if (_equipment.Department != null)
-                comboBoxDep.SelectedValue = _equipment.Department.Id;
+            
 
             
             var emps = _context.Employees.ToList();
@@ -90,7 +90,7 @@ namespace LunevPractic.EditForms
             _equipment.Name = name;
             _equipment.InventoryNumber = inv;
             _equipment.EquipmentType = _context.EquipmentTypes.First(t => t.Id == typeId);
-            _equipment.Department = _context.Departments.First(d => d.Id == deptId);
+            
 
             if (employeeId.HasValue)
                 _equipment.Employee = _context.Employees.First(e1 => e1.Id == employeeId.Value);
