@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using DAL;
-using LunevPractic.All;
+using Domain;
 
 namespace LunevPractic.EditForms
 {
     public partial class EditEquipmentForm : Form
     {
         private readonly EquipmentContext _context = new EquipmentContext();
-        private readonly DAL.Equipment _equipment;
+        private readonly Equipment _equipment;
 
         public EditEquipmentForm(Equipment equipment)
         {

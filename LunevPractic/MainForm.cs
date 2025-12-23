@@ -1,7 +1,6 @@
 using System.Data;
 using System.Windows.Forms;
 using DAL;
-using LunevPractic.All;
 using LunevPractic.Forms;
 using LunevPractic.Forms.AddForms;
 using Microsoft.EntityFrameworkCore;

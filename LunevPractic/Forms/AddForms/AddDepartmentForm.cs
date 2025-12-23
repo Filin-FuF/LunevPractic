@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
-using LunevPractic.All;
+
+using Domain;
 
 namespace LunevPractic
 {
@@ -18,7 +19,7 @@ namespace LunevPractic
         {
             InitializeComponent();
         }
-
+        
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 

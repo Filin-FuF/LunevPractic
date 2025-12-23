@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LunevPractic.All;
-
+using Domain;
+using DAL;
 namespace LunevPractic.Forms.AddForms
 {
     public partial class AddInstalledSoftwareForm : Form

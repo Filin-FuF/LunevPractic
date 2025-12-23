@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LunevPractic.DAL.Models;
+using DAL;
+using Domain;
+
 
 
 namespace LunevPractic

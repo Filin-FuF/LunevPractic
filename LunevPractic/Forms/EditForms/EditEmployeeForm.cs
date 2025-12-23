@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using DAL;
+using Domain;
 
 
 namespace LunevPractic.EditForms

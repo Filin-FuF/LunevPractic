@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 using DAL;
-using LunevPractic.All;
+using Domain;
 
 namespace LunevPractic.Forms.AddForms
 {
