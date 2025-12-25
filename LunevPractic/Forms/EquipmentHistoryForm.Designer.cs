@@ -49,6 +49,7 @@
             Controls.Add(dataGridViewHistory);
             Name = "EquipmentHistoryForm";
             Text = "EquipmentHistoryForm";
+            Load += EquipmentHistoryForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewHistory).EndInit();
             ResumeLayout(false);
         }

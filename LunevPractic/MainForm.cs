@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using DAL;
 using LunevPractic.Forms;
 using LunevPractic.Forms.AddForms;
+using LunevPractic.Forms.EditForms;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -25,8 +26,9 @@ namespace LunevPractic
             comboBox1.Items.Add("Тип оборудования");
             comboBox1.Items.Add("Установленное ПО");
             comboBox1.Items.Add("Лицензия ПО");
+
             comboBox1.SelectedIndex = 0;
-            
+            RefreshListBox();
             UpdateToolStatus();
 
 
@@ -38,30 +40,6 @@ namespace LunevPractic
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshListBox();
-            listBox1.Items.Clear();
-            switch (comboBox1.SelectedItem?.ToString())
-            {
-                case "Подразделение":
-                    foreach (var d in _context.Departments.ToList())
-                        listBox1.Items.Add($"{d.Id}: {d.Name}");
-                    break;
-
-                case "Сотрудник":
-                    foreach (var e1 in _context.Employees.ToList())
-                        listBox1.Items.Add($"{e1.Id}: {e1.Name} (Dept {e1.DepartmentId})");
-                    break;
-
-                case "Оборудование":
-                    foreach (var eq in _context.Equipments.ToList())
-                        listBox1.Items.Add($"{eq.Id}: {eq.InventoryNumber} - {eq.Name}");
-                    break;
-                case "Тип оборудования":
-                    foreach (var et in _context.EquipmentTypes.ToList())
-                    {
-                        listBox1.Items.Add($"{et.Id}: {et.Name}");
-                    }
-                    break;
-            }
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
@@ -93,17 +71,19 @@ namespace LunevPractic
                     }
                     break;
                 case "Тип оборудования":
-                    AddEmployeeForm addFormEqpT = new AddEmployeeForm();
+                    AddEquipmentTypeForm addFormEqpT = new AddEquipmentTypeForm();
                     if (addFormEqpT.ShowDialog() == DialogResult.OK)
                     {
                         RefreshListBox();
                     }
                     break;
                 case "Установленное ПО":
-                    AddInstalledSoftwareForm addInsSoft = new AddInstalledSoftwareForm();
-                    if (addInsSoft.ShowDialog() == DialogResult.OK)
+                    using (var addInsSoft = new AddInstalledSoftwareForm())
                     {
-                        RefreshListBox();
+                        if (addInsSoft.ShowDialog() == DialogResult.OK)
+                        {
+                            RefreshListBox();
+                        }
                     }
                     break;
                 case "Лицензия ПО":
@@ -173,20 +153,85 @@ namespace LunevPractic
 
             using (var ctx = new EquipmentContext())
             {
-                var dep = ctx.Departments.FirstOrDefault(d => d.Id == id.Value);
-                if (dep == null)
+                if (listBox1.SelectedItem == null)
                 {
-                    MessageBox.Show("Элемент не найден в базе");
+                    MessageBox.Show("Выберите запись для удаления");
                     return;
                 }
 
-                ctx.Departments.Remove(dep);
-                ctx.SaveChanges();
+                // Определяем, какой тип данных отображается
+                var selectedText = listBox1.SelectedItem.ToString();
+                var selectedId = GetIdFromSelectedText(selectedText); // функция для извлечения Id
+
+                if (selectedId == null)
+                {
+                    MessageBox.Show("Не удалось определить ID записи");
+                    return;
+                }
+
+                switch (comboBox1.SelectedItem?.ToString())
+                {
+                    case "Сотрудник":
+                        var employee = ctx.Employees.FirstOrDefault(e => e.Id == selectedId.Value);
+                        if (employee != null)
+                        {
+                            ctx.Employees.Remove(employee);
+                            ctx.SaveChanges();
+                        }
+                        break;
+
+                    case "Подразделение":
+                        var department = ctx.Departments.FirstOrDefault(d => d.Id == selectedId.Value);
+                        if (department != null)
+                        {
+                            ctx.Departments.Remove(department);
+                            ctx.SaveChanges();
+                        }
+                        break;
+
+                    case "Оборудование":
+                        var equipment = ctx.Equipments.FirstOrDefault(q => q.Id == selectedId.Value);
+                        if (equipment != null)
+                        {
+                            ctx.Equipments.Remove(equipment);
+                            ctx.SaveChanges();
+                        }
+                        break;
+
+                    case "Установленное ПО":
+                        var installedSoftware = ctx.InstalledSoftwares.FirstOrDefault(s => s.Id == selectedId.Value);
+                        if (installedSoftware != null)
+                        {
+                            ctx.InstalledSoftwares.Remove(installedSoftware);
+                            ctx.SaveChanges();
+                        }
+                        break;
+                    case "Лицензия ПО":
+                        var softwareLicense = ctx.SoftwareLicenses.FirstOrDefault(sl => sl.Id == selectedId.Value);
+                        if (softwareLicense != null)
+                        {
+                            ctx.SoftwareLicenses.Remove(softwareLicense);
+                            ctx.SaveChanges();
+                        }
+                        break;
+
+                }
+
+                RefreshListBox();
             }
-
-
-            listBox1.Items.Remove(listBox1.SelectedItem);
         }
+        private int? GetIdFromSelectedText(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return null;
+
+            var parts = text.Split(':');
+            if (parts.Length > 0 && int.TryParse(parts[0], out int id))
+                return id;
+
+            return null;
+        }
+
 
         private void buttonChange_Click(object sender, EventArgs e)
         {
@@ -205,7 +250,7 @@ namespace LunevPractic
             {
                 switch (selectedTable)
                 {
-                    case "Подразделения":
+                    case "Подразделение":
                         {
                             var dep = ctx.Departments.FirstOrDefault(d => d.Id == id.Value);
                             if (dep == null) { MessageBox.Show("Запись не найдена"); return; }
@@ -222,7 +267,7 @@ namespace LunevPractic
                             break;
                         }
 
-                    case "Сотрудники":
+                    case "Сотрудник":
                         {
                             var emp = ctx.Employees.FirstOrDefault(x => x.Id == id.Value);
                             if (emp == null) { MessageBox.Show("Запись не найдена"); return; }
@@ -235,7 +280,7 @@ namespace LunevPractic
                                     RefreshListBox();
                                 }
                             }
-                            RefreshListBox();
+
                             break;
                         }
 
@@ -244,7 +289,7 @@ namespace LunevPractic
                             var eq = ctx.Equipments
                                        .Include(x => x.EquipmentType)
                                        .Include(x => x.Employee)
-                                       .FirstOrDefault(x => x.Id == id.Value); 
+                                       .FirstOrDefault(x => x.Id == id.Value);
 
                             if (eq == null)
                             {
@@ -252,7 +297,7 @@ namespace LunevPractic
                                 return;
                             }
 
-                            using (var f = new EditForms.EditEquipmentForm(eq))
+                            using (var f = new EditForms.EditEquipmentForm(eq.Id))
                             {
                                 if (f.ShowDialog() == DialogResult.OK)
                                 {
@@ -264,7 +309,7 @@ namespace LunevPractic
                         }
 
 
-                    case "Типы оборудования":
+                    case "Тип оборудования":
                         {
                             var tp = ctx.EquipmentTypes.FirstOrDefault(x => x.Id == id.Value);
                             if (tp == null) { MessageBox.Show("Запись не найдена"); return; }
@@ -280,27 +325,70 @@ namespace LunevPractic
                             RefreshListBox();
                             break;
                         }
+                    case "Установленное ПО":
+
+                        {
+                            var @is = ctx.InstalledSoftwares.FirstOrDefault(x => x.Id == id.Value);
+                            if (@is == null)
+                            {
+                                MessageBox.Show("Запись не найдена");
+                                return;
+                            }
+
+                            using (var f = new EditInstalledSoftwareForm(ctx, @is, RefreshListBox))
+                            {
+                                if (f.ShowDialog() == DialogResult.OK)
+                                {
+
+                                    RefreshListBox();
+                                }
+                            }
+                            break;
+                        }
+                    case "Лицензия ПО":
+
+                        {
+                            var sl = ctx.SoftwareLicenses.FirstOrDefault(x => x.Id == id.Value);
+                            if (sl == null)
+                            {
+                                MessageBox.Show("Запись не найдена");
+                                return;
+                            }
+
+                            using (var f = new EditSoftwareLisenceForm(sl.Id))
+                            {
+                                if (f.ShowDialog() == DialogResult.OK)
+                                {
+
+                                    RefreshListBox();
+                                }
+                            }
+                            break;
+                        }
                 }
             }
         }
+
         private void RefreshListBox()
         {
+
             listBox1.Items.Clear();
 
             using var ctx = new EquipmentContext();
 
             var selected = comboBox1.SelectedItem?.ToString();
+
             if (string.IsNullOrEmpty(selected))
                 return;
 
             switch (selected)
             {
-                case "Подразделения":
+                case "Подразделение":
                     foreach (var d in ctx.Departments)
                         listBox1.Items.Add($"{d.Id}: {d.Name}");
                     break;
 
-                case "Сотрудники":
+                case "Сотрудник":
                     foreach (var e in ctx.Employees)
                         listBox1.Items.Add($"{e.Id}: {e.Name}");
                     break;
@@ -310,18 +398,32 @@ namespace LunevPractic
                         listBox1.Items.Add($"{q.Id}: {q.InventoryNumber} - {q.Name}");
                     break;
 
-                case "Типы оборудования":
+                case "Тип оборудования":
                     foreach (var t in ctx.EquipmentTypes)
                         listBox1.Items.Add($"{t.Id}: {t.Name}");
                     break;
+
+                case "Установленное ПО":
+                    foreach (var s in ctx.InstalledSoftwares)
+                        listBox1.Items.Add($"{s.Id}: {s.EquipmentId} - {s.SoftwareLicenseId} - {s.InstallDate}");
+                    break;
+
+                case "Лицензия ПО":
+                    foreach (var s in ctx.SoftwareLicenses)
+                        listBox1.Items.Add($"{s.Id}: {s.Name} - {s.Manufacturer} - {s.LicenseKey} - {s.ExpiryDate}");
+                    break;
+                default:
+                    break;
             }
         }
+
+
         private int? GetSelectedIdFromListBox()
         {
             if (listBox1.SelectedItem == null)
                 return null;
 
-            var text = listBox1.SelectedItem.ToString();   
+            var text = listBox1.SelectedItem.ToString();
             var parts = text.Split(':');
             if (int.TryParse(parts[0], out int id))
                 return id;
@@ -337,7 +439,7 @@ namespace LunevPractic
             if (listBox1.SelectedItem == null)
                 return null;
 
-            var text = listBox1.SelectedItem.ToString(); 
+            var text = listBox1.SelectedItem.ToString();
             var parts = text.Split(':');
             if (int.TryParse(parts[0], out int id))
                 return id;

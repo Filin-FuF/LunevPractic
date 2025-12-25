@@ -15,30 +15,39 @@ namespace LunevPractic
 {
     public partial class AddDepartmentForm : Form
     {
+        private readonly EquipmentContext _ctx = new EquipmentContext();
         public AddDepartmentForm()
         {
             InitializeComponent();
         }
-        
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
-        }
+        
+
         private void button1_Click(object sender, EventArgs e)
         {
-            var name = textBox1.Text.Trim();
-            if (string.IsNullOrWhiteSpace(name))
+            
+            var department = new Department
+            {
+                Name = textBox1.Text.Trim()
+            };
+
+            if (string.IsNullOrEmpty(department.Name))
             {
                 MessageBox.Show("Введите название подразделения");
                 return;
             }
 
-            using (var ctx = new EquipmentContext())
+            try
             {
-                ctx.Departments.Add(new Department { Name = name });
-                ctx.SaveChanges();
-            }
+                _ctx.Departments.Add(department);
+                _ctx.SaveChanges();
+                MessageBox.Show("Подразделение добавлено");
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при добавлении: {ex.Message}");
+            }
             DialogResult = DialogResult.OK;
             Close();
         }

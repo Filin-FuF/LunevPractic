@@ -41,6 +41,7 @@
             button1.TabIndex = 0;
             button1.Text = "Добавить";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label1
             // 
@@ -57,7 +58,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(225, 23);
             textBox1.TabIndex = 2;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // AddDepartmentForm
             // 

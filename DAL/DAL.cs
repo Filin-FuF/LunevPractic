@@ -17,13 +17,16 @@ namespace DAL
 
         public DbSet<EquipmentMoveHistory> EquipmentMoveHistories { get; set; }
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
+            {
                 optionsBuilder.UseSqlServer(
-                    "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EquipmentAccounting;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;");
+                    @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=EquipmentAccounting;Integrated Security=True;");
+            }
         }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Equipment>()

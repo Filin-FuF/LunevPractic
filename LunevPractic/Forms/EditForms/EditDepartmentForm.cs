@@ -28,7 +28,7 @@ namespace LunevPractic.EditForms
             textBox1.Text = _department.Name;
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             var name = textBox1.Text.Trim();
             if (string.IsNullOrWhiteSpace(name))
@@ -37,11 +37,9 @@ namespace LunevPractic.EditForms
                 return;
             }
 
-            _department.Name = name;   
+            _department.Name = name;
             DialogResult = DialogResult.OK;
             Close();
         }
-
-        
     }
 }

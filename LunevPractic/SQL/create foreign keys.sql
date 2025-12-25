@@ -8,10 +8,10 @@ ADD CONSTRAINT FK_Equipments_EquipmentTypes
     CONSTRAINT FK_Equipments_Employees
     FOREIGN KEY (EmployeeId) REFERENCES Employees(Id);
 
-ALTER TABLE InstalledSoftware
-ADD CONSTRAINT FK_InstalledSoftware_Equipments
+ALTER TABLE InstalledSoftwares
+ADD CONSTRAINT FK_InstalledSoftwares_Equipments
     FOREIGN KEY (EquipmentId) REFERENCES Equipments(Id),
-    CONSTRAINT FK_InstalledSoftware_SoftwareLicenses
+    CONSTRAINT FK_InstalledSoftwares_SoftwareLicenses
     FOREIGN KEY (SoftwareLicenseId) REFERENCES SoftwareLicenses(Id);
 
 ALTER TABLE EquipmentMoveHistories

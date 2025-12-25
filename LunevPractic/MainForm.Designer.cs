@@ -48,9 +48,9 @@
             // 
             // buttonAdd
             // 
-            buttonAdd.Location = new Point(12, 397);
+            buttonAdd.Location = new Point(214, 396);
             buttonAdd.Name = "buttonAdd";
-            buttonAdd.Size = new Size(106, 41);
+            buttonAdd.Size = new Size(87, 41);
             buttonAdd.TabIndex = 0;
             buttonAdd.Text = "Добавить";
             buttonAdd.UseVisualStyleBackColor = true;
@@ -60,16 +60,16 @@
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(12, 12);
+            listBox1.Location = new Point(21, 12);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(559, 379);
             listBox1.TabIndex = 1;
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new Point(352, 397);
+            buttonDelete.Location = new Point(307, 396);
             buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(106, 41);
+            buttonDelete.Size = new Size(87, 41);
             buttonDelete.TabIndex = 2;
             buttonDelete.Text = "Удалить";
             buttonDelete.UseVisualStyleBackColor = true;
@@ -77,9 +77,9 @@
             // 
             // buttonChange
             // 
-            buttonChange.Location = new Point(464, 397);
+            buttonChange.Location = new Point(400, 396);
             buttonChange.Name = "buttonChange";
-            buttonChange.Size = new Size(106, 41);
+            buttonChange.Size = new Size(87, 41);
             buttonChange.TabIndex = 3;
             buttonChange.Text = "Изменить";
             buttonChange.UseVisualStyleBackColor = true;
@@ -88,9 +88,9 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(124, 407);
+            comboBox1.Location = new Point(21, 406);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
+            comboBox1.Size = new Size(187, 23);
             comboBox1.TabIndex = 4;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
@@ -99,24 +99,25 @@
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
             statusStrip1.Location = new Point(0, 440);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(585, 22);
+            statusStrip1.Size = new Size(598, 22);
             statusStrip1.TabIndex = 5;
             statusStrip1.Text = "statusStrip1";
             // 
             // buttonHistory
             // 
-            buttonHistory.Location = new Point(251, 397);
+            buttonHistory.Location = new Point(493, 396);
             buttonHistory.Name = "buttonHistory";
-            buttonHistory.Size = new Size(95, 41);
+            buttonHistory.Size = new Size(87, 41);
             buttonHistory.TabIndex = 6;
             buttonHistory.Text = "История";
             buttonHistory.UseVisualStyleBackColor = true;
+            buttonHistory.Click += buttonHistory_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(585, 462);
+            ClientSize = new Size(598, 462);
             Controls.Add(buttonHistory);
             Controls.Add(statusStrip1);
             Controls.Add(comboBox1);

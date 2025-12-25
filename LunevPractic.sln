@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunevPractic", "LunevPractic\LunevPractic.csproj", "{23F1E77E-9FF0-480D-A708-14CA1E5EC79F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7C82A757-FFAD-466F-B44D-2E29661B9AE3} = {7C82A757-FFAD-466F-B44D-2E29661B9AE3}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{FF8F4ECC-2B30-4428-8799-79214AAA86B5}"
 EndProject

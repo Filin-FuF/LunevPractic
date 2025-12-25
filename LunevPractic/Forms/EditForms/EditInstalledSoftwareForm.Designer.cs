@@ -1,6 +1,6 @@
-﻿namespace LunevPractic.Forms.AddForms
+﻿namespace LunevPractic.Forms.EditForms
 {
-    partial class AddInstalledSoftwareForm
+    partial class EditInstalledSoftwareForm
     {
         /// <summary>
         /// Required designer variable.
@@ -40,68 +40,68 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 94);
+            label3.Location = new Point(12, 92);
             label3.Name = "label3";
             label3.Size = new Size(81, 15);
-            label3.TabIndex = 13;
+            label3.TabIndex = 20;
             label3.Text = "Лицензия ПО";
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(12, 112);
+            dateTimePicker1.Location = new Point(12, 110);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(215, 23);
-            dateTimePicker1.TabIndex = 12;
+            dateTimePicker1.TabIndex = 19;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 50);
+            label2.Location = new Point(12, 48);
             label2.Name = "label2";
             label2.Size = new Size(81, 15);
-            label2.TabIndex = 11;
+            label2.TabIndex = 18;
             label2.Text = "Лицензия ПО";
             // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(12, 68);
+            comboBox2.Location = new Point(12, 66);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(215, 23);
-            comboBox2.TabIndex = 10;
+            comboBox2.TabIndex = 17;
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(12, 24);
+            comboBox1.Location = new Point(12, 22);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(215, 23);
-            comboBox1.TabIndex = 9;
+            comboBox1.TabIndex = 16;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 6);
+            label1.Location = new Point(12, 4);
             label1.Name = "label1";
             label1.Size = new Size(88, 15);
-            label1.TabIndex = 8;
+            label1.TabIndex = 15;
             label1.Text = "Оборудование";
             // 
             // button1
             // 
-            button1.Location = new Point(12, 141);
+            button1.Location = new Point(12, 139);
             button1.Name = "button1";
             button1.Size = new Size(215, 51);
-            button1.TabIndex = 7;
-            button1.Text = "Добавить";
+            button1.TabIndex = 14;
+            button1.Text = "Изменить";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // AddInstalledSoftwareForm
+            // EditInstalledSoftwareForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(238, 203);
+            ClientSize = new Size(239, 197);
             Controls.Add(label3);
             Controls.Add(dateTimePicker1);
             Controls.Add(label2);
@@ -109,11 +109,9 @@
             Controls.Add(comboBox1);
             Controls.Add(label1);
             Controls.Add(button1);
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "AddInstalledSoftwareForm";
-            Text = "AddInstalledSoftwareForm";
-            Load += AddInstalledSoftwareForm_Load;
+            Name = "EditInstalledSoftwareForm";
+            Text = "EditInstalledSoftwareForm";
+            Load += EditInstalledSoftwareForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

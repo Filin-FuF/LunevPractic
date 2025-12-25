@@ -41,6 +41,7 @@
             button1.TabIndex = 0;
             button1.Text = "Изменить";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // textBox1
             // 
@@ -70,7 +71,7 @@
             MinimizeBox = false;
             Name = "EditEquipmentTypeForm";
             Text = "EditEquipmentTypeForm";
-            Load += EditEquipmentTypeForm_Load_1;
+            Load += EditEquipmentTypeForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

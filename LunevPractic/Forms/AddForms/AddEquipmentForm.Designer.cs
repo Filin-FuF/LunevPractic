@@ -214,7 +214,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AddEquipmentForm";
-            Text = "Добавить оборудование";
+            Load += AddEquipmentForm_Load_1;
             ResumeLayout(false);
             PerformLayout();
         }

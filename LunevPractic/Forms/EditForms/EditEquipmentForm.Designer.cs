@@ -28,147 +28,216 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboBoxType = new ComboBox();
-            button1 = new Button();
+            label7 = new Label();
+            cmbStatus = new ComboBox();
+            lable = new Label();
+            dtpRegistration = new DateTimePicker();
+            txtSerial = new TextBox();
+            label6 = new Label();
+            cmbType = new ComboBox();
             label1 = new Label();
-            textBoxName = new TextBox();
-            textBoxNum = new TextBox();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            comboBoxDep = new ComboBox();
+            txtInventory = new TextBox();
             label5 = new Label();
-            comboBoxEmp = new ComboBox();
+            cmbEmployee = new ComboBox();
+            label4 = new Label();
+            label3 = new Label();
+            comboBoxDep = new ComboBox();
+            label2 = new Label();
+            txtName = new TextBox();
+            button1 = new Button();
             SuspendLayout();
             // 
-            // comboBoxType
+            // label7
             // 
-            comboBoxType.FormattingEnabled = true;
-            comboBoxType.Location = new Point(12, 115);
-            comboBoxType.Name = "comboBoxType";
-            comboBoxType.Size = new Size(221, 23);
-            comboBoxType.TabIndex = 0;
+            label7.AutoSize = true;
+            label7.Location = new Point(193, 147);
+            label7.Name = "label7";
+            label7.Size = new Size(82, 15);
+            label7.TabIndex = 36;
+            label7.Text = "Новый статус";
             // 
-            // button1
+            // cmbStatus
             // 
-            button1.Location = new Point(12, 232);
-            button1.Name = "button1";
-            button1.Size = new Size(224, 35);
-            button1.TabIndex = 1;
-            button1.Text = "Изменить";
-            button1.UseVisualStyleBackColor = true;
+            cmbStatus.FormattingEnabled = true;
+            cmbStatus.Location = new Point(193, 165);
+            cmbStatus.Name = "cmbStatus";
+            cmbStatus.Size = new Size(175, 23);
+            cmbStatus.TabIndex = 35;
+            // 
+            // lable
+            // 
+            lable.AutoSize = true;
+            lable.Location = new Point(12, 147);
+            lable.Name = "lable";
+            lable.Size = new Size(142, 15);
+            lable.TabIndex = 34;
+            lable.Text = "Дата постановки на учёт";
+            // 
+            // dtpRegistration
+            // 
+            dtpRegistration.Location = new Point(12, 165);
+            dtpRegistration.Name = "dtpRegistration";
+            dtpRegistration.Size = new Size(175, 23);
+            dtpRegistration.TabIndex = 33;
+            // 
+            // txtSerial
+            // 
+            txtSerial.Location = new Point(12, 119);
+            txtSerial.Name = "txtSerial";
+            txtSerial.Size = new Size(175, 23);
+            txtSerial.TabIndex = 32;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(12, 99);
+            label6.Name = "label6";
+            label6.Size = new Size(104, 15);
+            label6.TabIndex = 31;
+            label6.Text = "Серийный номер";
+            // 
+            // cmbType
+            // 
+            cmbType.FormattingEnabled = true;
+            cmbType.Location = new Point(193, 26);
+            cmbType.Name = "cmbType";
+            cmbType.Size = new Size(175, 23);
+            cmbType.TabIndex = 30;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(193, 8);
             label1.Name = "label1";
-            label1.Size = new Size(95, 15);
-            label1.TabIndex = 2;
-            label1.Text = "Новое название";
+            label1.Size = new Size(67, 15);
+            label1.TabIndex = 29;
+            label1.Text = "Новый тип";
             // 
-            // textBoxName
+            // txtInventory
             // 
-            textBoxName.Location = new Point(12, 27);
-            textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(221, 23);
-            textBoxName.TabIndex = 3;
-            // 
-            // textBoxNum
-            // 
-            textBoxNum.Location = new Point(12, 71);
-            textBoxNum.Name = "textBoxNum";
-            textBoxNum.Size = new Size(221, 23);
-            textBoxNum.TabIndex = 5;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 53);
-            label2.Name = "label2";
-            label2.Size = new Size(155, 15);
-            label2.TabIndex = 4;
-            label2.Text = "Новый уникальный номер";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(12, 97);
-            label3.Name = "label3";
-            label3.Size = new Size(67, 15);
-            label3.TabIndex = 6;
-            label3.Text = "Новый тип";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(12, 141);
-            label4.Name = "label4";
-            label4.Size = new Size(128, 15);
-            label4.TabIndex = 7;
-            label4.Text = "Новое подразделение";
-            // 
-            // comboBoxDep
-            // 
-            comboBoxDep.FormattingEnabled = true;
-            comboBoxDep.Location = new Point(12, 159);
-            comboBoxDep.Name = "comboBoxDep";
-            comboBoxDep.Size = new Size(221, 23);
-            comboBoxDep.TabIndex = 8;
+            txtInventory.Location = new Point(12, 72);
+            txtInventory.Name = "txtInventory";
+            txtInventory.Size = new Size(175, 23);
+            txtInventory.TabIndex = 28;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 185);
+            label5.Location = new Point(193, 101);
             label5.Name = "label5";
-            label5.Size = new Size(66, 15);
-            label5.TabIndex = 9;
-            label5.Text = "Сотрудник";
+            label5.Size = new Size(154, 15);
+            label5.TabIndex = 27;
+            label5.Text = "Работник (Необязательно)";
             // 
-            // comboBoxEmp
+            // cmbEmployee
             // 
-            comboBoxEmp.FormattingEnabled = true;
-            comboBoxEmp.Location = new Point(12, 203);
-            comboBoxEmp.Name = "comboBoxEmp";
-            comboBoxEmp.Size = new Size(221, 23);
-            comboBoxEmp.TabIndex = 10;
+            cmbEmployee.FormattingEnabled = true;
+            cmbEmployee.Location = new Point(193, 119);
+            cmbEmployee.Name = "cmbEmployee";
+            cmbEmployee.Size = new Size(175, 23);
+            cmbEmployee.TabIndex = 26;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(12, 52);
+            label4.Name = "label4";
+            label4.Size = new Size(122, 15);
+            label4.TabIndex = 25;
+            label4.Text = "Инвертарный номер";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(193, 54);
+            label3.Name = "label3";
+            label3.Size = new Size(128, 15);
+            label3.TabIndex = 24;
+            label3.Text = "Новое подразделение";
+            // 
+            // comboBoxDep
+            // 
+            comboBoxDep.FormattingEnabled = true;
+            comboBoxDep.Location = new Point(193, 72);
+            comboBoxDep.Name = "comboBoxDep";
+            comboBoxDep.Size = new Size(175, 23);
+            comboBoxDep.TabIndex = 23;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(141, 15);
+            label2.TabIndex = 22;
+            label2.Text = "Название оборудования";
+            // 
+            // txtName
+            // 
+            txtName.Location = new Point(12, 26);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(175, 23);
+            txtName.TabIndex = 21;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(12, 194);
+            button1.Name = "button1";
+            button1.Size = new Size(356, 52);
+            button1.TabIndex = 20;
+            button1.Text = "Изменить";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // EditEquipmentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(248, 272);
-            Controls.Add(comboBoxEmp);
+            ClientSize = new Size(385, 256);
+            Controls.Add(label7);
+            Controls.Add(cmbStatus);
+            Controls.Add(lable);
+            Controls.Add(dtpRegistration);
+            Controls.Add(txtSerial);
+            Controls.Add(label6);
+            Controls.Add(cmbType);
+            Controls.Add(label1);
+            Controls.Add(txtInventory);
             Controls.Add(label5);
-            Controls.Add(comboBoxDep);
+            Controls.Add(cmbEmployee);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(textBoxNum);
+            Controls.Add(comboBoxDep);
             Controls.Add(label2);
-            Controls.Add(textBoxName);
-            Controls.Add(label1);
+            Controls.Add(txtName);
             Controls.Add(button1);
-            Controls.Add(comboBoxType);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "EditEquipmentForm";
             Text = "EditEquipmentForm";
+            Load += EditEquipmentForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private ComboBox comboBoxType;
-        private Button button1;
+        private Label label7;
+        private ComboBox cmbStatus;
+        private Label lable;
+        private DateTimePicker dtpRegistration;
+        private TextBox txtSerial;
+        private Label label6;
+        private ComboBox cmbType;
         private Label label1;
-        private TextBox textBoxName;
-        private TextBox textBoxNum;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private ComboBox comboBoxDep;
+        private TextBox txtInventory;
         private Label label5;
-        private ComboBox comboBoxEmp;
+        private ComboBox cmbEmployee;
+        private Label label4;
+        private Label label3;
+        private ComboBox comboBoxDep;
+        private Label label2;
+        private TextBox txtName;
+        private Button button1;
     }
 }

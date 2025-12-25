@@ -20,32 +20,7 @@ namespace LunevPractic
         {
             InitializeComponent();
         }
-        private void AddEquipmentForm_Load(object sender, EventArgs e)
-        {
-            // Типы оборудования
-            var types = _context.EquipmentTypes.ToList();
-            cmbType.DataSource = types;
-            cmbType.DisplayMember = "Name";
-            cmbType.ValueMember = "Id";
 
-            // Сотрудники (первый пункт – не выбран)
-            var employees = _context.Employees.ToList();
-            employees.Insert(0, new Employee { Id = 0, Name = "<не выбран>" });
-
-            cmbEmployee.DataSource = employees;
-            cmbEmployee.DisplayMember = "Name";
-            cmbEmployee.ValueMember = "Id";
-
-            // Статусы
-            cmbStatus.Items.Clear();
-            cmbStatus.Items.Add("В работе");
-            cmbStatus.Items.Add("На списании");
-            cmbStatus.Items.Add("В ремонте");
-            cmbStatus.SelectedIndex = 0;
-
-            // Дата постановки на учет по умолчанию – сегодня
-            dtpRegistration.Value = DateTime.Today;
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -82,7 +57,7 @@ namespace LunevPractic
             var regDate = dtpRegistration.Value.Date;
             var status = cmbStatus.SelectedItem.ToString();
 
-            // Проверка уникальности инвентарного номера (опционально, но полезно)
+            // проверка уникальности инвентарного номера
             if (_context.Equipments.Any(e => e.InventoryNumber == inv))
             {
                 MessageBox.Show("Оборудование с таким инвентарным номером уже существует");
@@ -100,7 +75,20 @@ namespace LunevPractic
                 Status = status
             };
 
+            
             _context.Equipments.Add(eq);
+            _context.SaveChanges(); 
+
+            
+            var move = new EquipmentMoveHistory
+            {
+                EquipmentId = eq.Id,
+                MoveDate = DateTime.Now,
+                OldEmployeeId = null,        
+                NewEmployeeId = employeeId   
+            };
+
+            _context.EquipmentMoveHistories.Add(move);
             _context.SaveChanges();
 
             DialogResult = DialogResult.OK;
@@ -108,6 +96,43 @@ namespace LunevPractic
         }
 
 
+        private void AddEquipmentForm_Load(object sender, EventArgs e)
+        {
+            
+        }
 
+        private void AddEquipmentForm_Load_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Загрузка формы");
+
+
+            using (var ctx = new EquipmentContext())
+            {
+                cmbType.DataSource = ctx.EquipmentTypes.ToList();
+                cmbType.DisplayMember = "Name";
+                cmbType.ValueMember = "Id";
+            }
+            using (var ctx = new EquipmentContext())
+            {
+                comboBoxDep.DataSource = ctx.Departments.ToList();
+                comboBoxDep.DisplayMember = "Name";
+                comboBoxDep.ValueMember = "Id";
+            }
+
+            using (var ctx = new EquipmentContext())
+            {
+                cmbEmployee.DataSource = ctx.Employees.ToList();
+                cmbEmployee.DisplayMember = "Name";
+                cmbEmployee.ValueMember = "Id";
+            }
+            cmbStatus.Items.Clear();
+            cmbStatus.Items.Add("В работе");
+            cmbStatus.Items.Add("На списании");
+            cmbStatus.Items.Add("В ремонте");
+            cmbStatus.SelectedIndex = 0;
+            cmbStatus.Refresh();
+
+            dtpRegistration.Value = DateTime.Today;
+        }
     }
 }

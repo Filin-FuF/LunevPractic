@@ -1,4 +1,5 @@
-﻿CREATE TABLE Departments (
+﻿CREATE DATABASE EquipmentAccounting;
+CREATE TABLE Departments (
     Id           INT IDENTITY(1,1) PRIMARY KEY,
     Name         NVARCHAR(100) NOT NULL
 );
@@ -33,7 +34,7 @@ CREATE TABLE SoftwareLicenses (
     ExpiryDate   DATE          NOT NULL
 );
 
-CREATE TABLE InstalledSoftware (
+CREATE TABLE InstalledSoftwares (
     EquipmentId       INT NOT NULL,
     SoftwareLicenseId INT NOT NULL,
     InstallDate       DATE NOT NULL,
